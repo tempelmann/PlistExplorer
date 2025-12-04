@@ -12,6 +12,7 @@
 @interface PlistExplorer : NSObject
 
 - (NSDictionary*)crackFile:(NSString*)aFile;
+- (NSDictionary*)crackData:(NSData*)data;
 - (NSDictionary*)blobOfUnarchiver:(NSKeyedUnarchiver*)unarchiver;
 
 @end

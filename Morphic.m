@@ -11,16 +11,18 @@
 #import "CrackedUnarchiver.h"
 #import "PlistLogger.h"
 
+@interface Morphic()
+@end
+
 @implementation Morphic
-{
-	NSMutableDictionary* data;
-}
+
+@synthesize data = _data;
 
 - (id) init
 {
 	self = [super init];
 	if (self != nil) {
-		data = [NSMutableDictionary dictionary];
+		self.data = [NSMutableDictionary dictionary];
 	}
 	return self;
 }
@@ -45,7 +47,7 @@
 				obj = @"nil";
 			}
 		}
-		[data setObject: obj forKey:key];
+		[self.data setObject: obj forKey:key];
 	}
 	return self;
 }
@@ -67,12 +69,12 @@
 		[logger logStringOfObject:self.className level:level];
 
 		// the information about the object's properties
-		NSArray *keys = [data allKeys];
+		NSArray *keys = [self.data allKeys];
 		keys = [keys sortedArrayUsingSelector:@selector(compare:)];
 
 		for (NSString* key in keys)
 		{
-			id object = [data objectForKey:key];
+			id object = [self.data objectForKey:key];
 			[logger logKey:key level:level];
 			[logger logValue:object level:level];
 		}

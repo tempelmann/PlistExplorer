@@ -9,7 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PlistLogger : NSObject
+@interface PlistLogger : NSObject {
+	NSMutableSet* _visitedObjects;
+}
+@property (retain) NSMutableSet* visitedObjects;
 
 - (void)logStringOfObject:(id)object level:(NSInteger)level;
 - (BOOL)tryLogObject:(id)object;

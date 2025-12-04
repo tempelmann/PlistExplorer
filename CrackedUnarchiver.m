@@ -12,4 +12,6 @@
 
 @implementation CrackedUnarchiver
 
+@synthesize cracker = _cracker;
+
 @end

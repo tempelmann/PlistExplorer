@@ -25,15 +25,24 @@
 - (NSKeyedUnarchiver *) newUnarchiverWithData: (NSData*)data
 {
 	NSError* error = nil;
-	CrackedUnarchiver* unarchiver = [[CrackedUnarchiver alloc] initForReadingFromData:data error:&error];
-	if (error != nil)
+	CrackedUnarchiver* unarchiver;
+	#if __clang_major__ >= 9
+	if (@available(macOS 10.13, *)) {
+		unarchiver = [[CrackedUnarchiver alloc] initForReadingFromData:data error:&error];
+	} else
+	#endif
 	{
-		NSLog(@"error reading data: %@",error);
+		unarchiver = [[CrackedUnarchiver alloc] initForReadingWithData:data];
 	}
-	else
-	{
+	if (error != nil) {
+		NSLog(@"error reading data: %@",error);
+	} else {
 		unarchiver.cracker = self;
-		unarchiver.decodingFailurePolicy = NSDecodingFailurePolicyRaiseException;
+		#if __clang_major__ >= 9
+			if (@available(macOS 10.11, *)) {
+				unarchiver.decodingFailurePolicy = NSDecodingFailurePolicyRaiseException;
+			}
+		#endif
 		unarchiver.requiresSecureCoding = NO;
 	}
 	return unarchiver;
@@ -75,29 +84,22 @@
 	{
 		// there should be only one key in keys. At least only the first object is returned.
 		BOOL error;
-		do
-		{
+		do {
 			// try until it is cracked
-			@try 
-			{
+			@try  {
 				error = NO;
 				return [unarchiver decodeObjectForKey:key];
 				
-			}
-			@catch (NSException* exception)
-			{
-				if ([[exception name] isEqual:NSInvalidUnarchiveOperationException])
-				{
+			} @catch (NSException* exception) {
+				if ([[exception name] isEqual:NSInvalidUnarchiveOperationException]) {
 					// too bad the exception doesn't have the class's name in its info dictionary.
 					// actually this could probably be swizzled into appkit..
 					NSString* className = [self getClassNameFromException: exception];
 					[self addMorphicNamed: className];
 					unarchiver = [self newUnarchiverWithData:data];
-				}
-				else 
-				{
+				} else {
 					NSLog(@"unhandled exception: %@",exception);
-					exit(1);
+					[exception raise];	// never exit() in subroutines!
 				}
 				error = YES;
 			}
@@ -107,11 +109,20 @@
 	return nil;
 }
 
-- (NSDictionary*)crackFile:(NSString*)file
+- (NSDictionary*)crackData:(NSData*)data
 {
-	NSData* data = [NSData dataWithContentsOfFile:file];
 	NSKeyedUnarchiver* unarchiver = [self newUnarchiverWithData:data];
 
 	return [self crackUnarchiver: unarchiver withData: data];
 }
+
+- (NSDictionary*)crackFile:(NSString*)file
+{
+	NSData* data = [NSData dataWithContentsOfFile:file];
+	if (data == nil) {
+		return nil;
+	}
+	return [self crackData:data];
+}
+
 @end

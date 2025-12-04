@@ -10,6 +10,9 @@
 
 /// this class is like an object/class-blueprint of any kind
 /// actual classes are created via PlistExplorer, they are then instantiated during decoding and initialized via #initWithCoder:
-@interface Morphic : NSObject
+@interface Morphic : NSObject {
+	NSMutableDictionary* _data;
+}
+	@property NSMutableDictionary* data;
 
 @end

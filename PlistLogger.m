@@ -67,27 +67,25 @@
 
 - (NSString*)logString
 {
-	// description of NSData is a bit too long, just write something usefull
+	// description of NSData is a bit too long, just write something useful
 	return [NSString stringWithFormat: @"NSData with: %tu Bytes",[self length]];
 }
 
 @end
 
 @interface PlistLogger ()
-
-@property (retain) NSMutableSet* visitedObjects;
-
 @end
 
 @implementation PlistLogger
 
+@synthesize visitedObjects = _visitedObjects;
+
 - (instancetype)init
 {
 	self = [super init];
-	if (self)
-	{
+	if (self) {
 		// visited objects are used only for Morphics
-		_visitedObjects = [NSMutableSet new];
+		self.visitedObjects = [NSMutableSet new];
 	}
 	return self;
 }
@@ -99,8 +97,8 @@
 
 - (BOOL)tryLogObject:(id)object
 {
-	if ([_visitedObjects containsObject:object]) return NO;
-	[_visitedObjects addObject:object];
+	if ([self.visitedObjects containsObject:object]) return NO;
+	[self.visitedObjects addObject:object];
 	return YES;
 }
 

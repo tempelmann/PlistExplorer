@@ -171,9 +171,9 @@
 			productReference = 3DA45CE810FE6A850070BC1A /* PlistExplorer */;
 			productType = "com.apple.product-type.tool";
 		};
-		A484B7AC2EE222FB001E4C51 /* NSKeyedArchiver */ = {
+		A484B7AC2EE222FB001E4C51 /* NSKeyedArchiver_i386_x64 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A484B7B02EE222FB001E4C51 /* Build configuration list for PBXNativeTarget "NSKeyedArchiver" */;
+			buildConfigurationList = A484B7B02EE222FB001E4C51 /* Build configuration list for PBXNativeTarget "NSKeyedArchiver_i386_x64" */;
 			buildPhases = (
 				A484B7A92EE222FB001E4C51 /* Headers */,
 				A484B7AA2EE222FB001E4C51 /* Sources */,
@@ -183,7 +183,7 @@
 			);
 			dependencies = (
 			);
-			name = NSKeyedArchiver;
+			name = NSKeyedArchiver_i386_x64;
 			productName = NSKeyedArchiver_decode.dylib;
 			productReference = A484B7AD2EE222FB001E4C51 /* libNSKeyedArchiver.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -201,7 +201,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PlistExplorer" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PlistExplorer_Xcode_8_for_32bit" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
@@ -214,7 +214,7 @@
 			projectRoot = "";
 			targets = (
 				3DA45CE710FE6A850070BC1A /* PlistExporer */,
-				A484B7AC2EE222FB001E4C51 /* NSKeyedArchiver */,
+				A484B7AC2EE222FB001E4C51 /* NSKeyedArchiver_i386_x64 */,
 			);
 		};
 /* End PBXProject section */
@@ -308,11 +308,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 25856V4B4X;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
@@ -346,11 +343,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 25856V4B4X;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -368,6 +362,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -399,12 +394,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -433,6 +430,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -448,7 +446,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A484B7B02EE222FB001E4C51 /* Build configuration list for PBXNativeTarget "NSKeyedArchiver" */ = {
+		A484B7B02EE222FB001E4C51 /* Build configuration list for PBXNativeTarget "NSKeyedArchiver_i386_x64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A484B7AE2EE222FB001E4C51 /* Debug */,
@@ -457,7 +455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PlistExplorer" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PlistExplorer_Xcode_8_for_32bit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
